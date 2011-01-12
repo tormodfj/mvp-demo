@@ -15,7 +15,7 @@ namespace MvpDemoApplication
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MvpDemo());
+			Application.Run(new Phonebook());
 		}
 	}
 }
