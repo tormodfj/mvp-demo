@@ -1,15 +1,26 @@
 ﻿using System.Windows.Forms;
+using System;
 
 namespace MvpDemoApplication
 {
 	public interface IPhonebookView
 	{
+		event EventHandler SaveButtonClicked;
+
 		void SuspendLayout();
 
 		void ResumeLayout();
 
-		DataGridView ContactsGrid { get; }
+		void AddContact(string firstName, string lastName, string phoneNumber);
 
-		Button SaveButton { get; }
+		string GetFirstName(int index);
+
+		string GetLastName(int index);
+
+		string GetPhoneNumber(int index);
+
+		int GetContactCount();
+
+		void ShowMessage(string message);
 	}
 }

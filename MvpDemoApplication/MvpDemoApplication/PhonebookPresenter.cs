@@ -25,7 +25,7 @@ namespace MvpDemoApplication
 
 		private void SubscribeToEvents()
 		{
-			view.SaveButton.Click += SaveButton_Click;
+			view.SaveButtonClicked += SaveButton_Click;
 		}
 
 		private void InitializePresenter()
@@ -43,7 +43,7 @@ namespace MvpDemoApplication
 					{
 						while (reader.Read())
 						{
-							view.ContactsGrid.Rows.Add(
+							view.AddContact(
 								reader.GetString(0),
 								reader.GetString(1),
 								reader.GetString(2));
@@ -56,13 +56,12 @@ namespace MvpDemoApplication
 
 		private void SaveButton_Click(object sender, EventArgs e)
 		{
-			foreach (DataGridViewRow contactRow in view.ContactsGrid.Rows)
+			for(int i = 0; i < view.GetContactCount(); i++)
 			{
-				if (contactRow.IsNewRow) continue;
-
-				if (!Regex.IsMatch(contactRow.Cells[2].Value as string, @"^\d*$"))
+				string phoneNumber = view.GetPhoneNumber(i);
+				if (!Regex.IsMatch(phoneNumber, @"^\d*$"))
 				{
-					MessageBox.Show("Phone numbers can consist only of digits.");
+					view.ShowMessage("Phone numbers can consist only of digits.");
 					return;
 				}
 			}
@@ -77,22 +76,20 @@ namespace MvpDemoApplication
 					deleteAllPersons.ExecuteNonQuery();
 				}
 
-				foreach (DataGridViewRow contactRow in view.ContactsGrid.Rows)
+				for(int i = 0; i < view.GetContactCount(); i++)
 				{
-					if (contactRow.IsNewRow) continue;
-
 					using (SqlCeCommand insertPerson = connection.CreateCommand())
 					{
 						insertPerson.CommandText = @"INSERT INTO Persons (FirstName, LastName, PhoneNumber) VALUES (@firstName, @lastName, @phoneNumber)";
-						insertPerson.Parameters.Add("@firstName", SqlDbType.NVarChar, 100).Value = contactRow.Cells[0].Value;
-						insertPerson.Parameters.Add("@lastName", SqlDbType.NVarChar, 100).Value = contactRow.Cells[1].Value;
-						insertPerson.Parameters.Add("@phoneNumber", SqlDbType.NVarChar, 20).Value = contactRow.Cells[2].Value;
+						insertPerson.Parameters.Add("@firstName", SqlDbType.NVarChar, 100).Value = view.GetFirstName(i);
+						insertPerson.Parameters.Add("@lastName", SqlDbType.NVarChar, 100).Value = view.GetLastName(i);
+						insertPerson.Parameters.Add("@phoneNumber", SqlDbType.NVarChar, 20).Value = view.GetPhoneNumber(i);
 						insertPerson.Prepare();
 						insertPerson.ExecuteNonQuery();
 					}
 				}
 
-				MessageBox.Show("Save completed");
+				view.ShowMessage("Save completed");
 			}
 		}
 	}
