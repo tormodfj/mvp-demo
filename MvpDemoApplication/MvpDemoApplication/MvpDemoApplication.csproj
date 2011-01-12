@@ -64,7 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPhonebookModel.cs" />
+    <Compile Include="IPhonebookRepository.cs" />
     <Compile Include="IPhonebookView.cs" />
+    <Compile Include="PhonebookEntry.cs" />
+    <Compile Include="PhonebookRepository.cs" />
     <Compile Include="PhonebookView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +78,7 @@
     <Compile Include="PhonebookPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationException.cs" />
     <EmbeddedResource Include="PhonebookView.resx">
       <DependentUpon>PhonebookView.cs</DependentUpon>
     </EmbeddedResource>
