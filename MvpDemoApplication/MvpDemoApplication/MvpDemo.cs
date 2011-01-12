@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlServerCe;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MvpDemoApplication
@@ -39,6 +40,17 @@ namespace MvpDemoApplication
 
 		private void saveButton_Click(object sender, EventArgs e)
 		{
+			foreach (DataGridViewRow contactRow in contactsGrid.Rows)
+			{
+				if (contactRow.IsNewRow) continue;
+
+				if(!Regex.IsMatch(contactRow.Cells[2].Value as string, @"^\d*$"))
+				{
+					MessageBox.Show("Phone numbers can consist only of digits.");
+					return;
+				}
+			}
+
 			using (SqlCeConnection connection = new SqlCeConnection(connectionString))
 			{
 				connection.Open();
@@ -63,6 +75,8 @@ namespace MvpDemoApplication
 						insertPerson.ExecuteNonQuery();
 					}
 				}
+
+				MessageBox.Show("Save completed");
 			}
 		}
 	}
