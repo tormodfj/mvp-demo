@@ -63,16 +63,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Phonebook.cs">
+    <Compile Include="IPhonebookModel.cs" />
+    <Compile Include="IPhonebookView.cs" />
+    <Compile Include="PhonebookView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Phonebook.Designer.cs">
-      <DependentUpon>Phonebook.cs</DependentUpon>
+    <Compile Include="PhonebookView.Designer.cs">
+      <DependentUpon>PhonebookView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PhonebookModel.cs" />
+    <Compile Include="PhonebookPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Phonebook.resx">
-      <DependentUpon>Phonebook.cs</DependentUpon>
+    <EmbeddedResource Include="PhonebookView.resx">
+      <DependentUpon>PhonebookView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

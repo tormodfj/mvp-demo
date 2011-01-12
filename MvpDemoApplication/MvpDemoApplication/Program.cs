@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MvpDemoApplication
@@ -15,7 +13,7 @@ namespace MvpDemoApplication
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Phonebook());
+			Application.Run(new PhonebookView());
 		}
 	}
 }
