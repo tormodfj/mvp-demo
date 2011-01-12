@@ -63,16 +63,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MvpDemo.cs">
+    <Compile Include="Phonebook.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MvpDemo.Designer.cs">
-      <DependentUpon>MvpDemo.cs</DependentUpon>
+    <Compile Include="Phonebook.Designer.cs">
+      <DependentUpon>Phonebook.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MvpDemo.resx">
-      <DependentUpon>MvpDemo.cs</DependentUpon>
+    <EmbeddedResource Include="Phonebook.resx">
+      <DependentUpon>Phonebook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,6 +120,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
