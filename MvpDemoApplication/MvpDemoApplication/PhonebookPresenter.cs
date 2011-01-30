@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MvpDemoApplication
 {
@@ -19,7 +20,7 @@ namespace MvpDemoApplication
 
 		private void SubscribeToEvents()
 		{
-			view.SaveButtonClicked += SaveButton_Click;
+			view.SaveButtonClicked += HandleSaveButtonClick;
 		}
 
 		private void InitializePresenter()
@@ -32,19 +33,14 @@ namespace MvpDemoApplication
 			view.ResumeLayout();
 		}
 
-		private void SaveButton_Click(object sender, EventArgs e)
+		private void HandleSaveButtonClick(object sender, EventArgs e)
 		{
 			try
 			{
 				model.Entries.Clear();
-				for (int i = 0; i < view.GetContactCount(); i++)
+				foreach (PhonebookEntry entry in GetAllEntries())
 				{
-					model.Entries.Add(new PhonebookEntry
-					{
-						FirstName = view.GetFirstName(i),
-						LastName = view.GetLastName(i),
-						PhoneNumber = view.GetPhoneNumber(i)
-					});
+					model.Entries.Add(entry);
 				}
 				model.Save();
 
@@ -53,6 +49,19 @@ namespace MvpDemoApplication
 			catch (ValidationException)
 			{
 				view.ShowMessage("Phone numbers can consist only of digits.");
+			}
+		}
+
+		private IEnumerable<PhonebookEntry> GetAllEntries()
+		{
+			for (int i = 0; i < view.GetContactCount(); i++)
+			{
+				yield return new PhonebookEntry
+				{
+					FirstName = view.GetFirstName(i),
+					LastName = view.GetLastName(i),
+					PhoneNumber = view.GetPhoneNumber(i)
+				};
 			}
 		}
 	}

@@ -14,7 +14,10 @@ namespace MvpDemoApplication
 		public PhonebookView()
 		{
 			InitializeComponent();
-			PhonebookModel model = new PhonebookModel();
+
+			PhonebookRepository repository = new PhonebookRepository();
+			PhonebookEntryValidator validator = new PhonebookEntryValidator();
+			PhonebookModel model = new PhonebookModel(repository, validator);
 			PhonebookPresenter presenter = new PhonebookPresenter(model, this);
 		}
 

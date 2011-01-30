@@ -1,5 +1,4 @@
-﻿
-namespace MvpDemoApplication
+﻿namespace MvpDemoApplication
 {
 	public class PhonebookEntry
 	{

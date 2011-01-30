@@ -63,10 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPhonebookEntryValidator.cs" />
     <Compile Include="IPhonebookModel.cs" />
     <Compile Include="IPhonebookRepository.cs" />
     <Compile Include="IPhonebookView.cs" />
     <Compile Include="PhonebookEntry.cs" />
+    <Compile Include="PhonebookEntryValidator.cs" />
     <Compile Include="PhonebookRepository.cs" />
     <Compile Include="PhonebookView.cs">
       <SubType>Form</SubType>
